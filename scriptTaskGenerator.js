@@ -102,7 +102,7 @@ function printTask () {
             if (timeTask(listTasks[i]) == 'Em andamento') {
                 td_status.classList.add("col-g-2", "col-m-2", "col-p-12", 'Em-Andamento');
 
-            } else if (timeTask(listTasks[i]) == 'Em atrazo') {
+            } else if (timeTask(listTasks[i]) == 'Em atraso') {
                 td_status.classList.add("col-g-2", "col-m-2", "col-p-12", 'Em-Atrazo');
 
             } else if (timeTask(listTasks[i]) == 'Pendente') {
