@@ -6,7 +6,6 @@ const username = document.getElementById("username");
 const email2 = document.getElementById("email2");
 const password2 = document.getElementById("password2");
 
-
 // LocalStorege
 function criaUsuario(nome, email, senha) {
     const user = {
@@ -17,8 +16,6 @@ function criaUsuario(nome, email, senha) {
    
     localStorage.setItem("user", JSON.stringify(user));
 }
-let userObject = JSON.parse(localStorage.getItem("user"))
-    
 
 // Checagem do usuário
 form.addEventListener("submit", (event) => {
@@ -35,13 +32,14 @@ form2.addEventListener("submit", (event) => {
     
    check_Input2()
 })
+    
 function check_Input() {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
-    let validador = 0;
 
+    let validador = 0;
     if(emailValue === '') {
-        
+            
         errorValidation(email);
         validador = -1;
     } else {
@@ -64,30 +62,21 @@ function check_Input2() {
     const password2Value = password2.value.trim();
     let validador = 0;
 
-    if(usarnameValue === '') {
-        
-        errorValidation(username);
+    function validarCampo(valor, campo) {
+    if (valor === '') {
+        errorValidation(campo);
         validador = -1;
     } else {
-        successValidation(username);
+        successValidation(campo);
     }
-    if(email2Value === '' ){
-        
-        errorValidation(email2);
-        validador = -1;
-    } else {
-        successValidation(email2);
-    }
-    if(password2Value === '') {
-        
-        errorValidation(password2);
-        validador = -1;
-    } else {
-        successValidation(password2);
     }
 
-    if (validador == 0) {
-        criaUsuario(usarnameValue, email2Value, password2Value)
+    validarCampo(usarnameValue, username);
+    validarCampo(email2Value, email2);
+    validarCampo(password2Value, password2);
+
+    if (validador === 0) {
+        criaUsuario(usarnameValue, email2Value, password2Value);
     }
 }
 

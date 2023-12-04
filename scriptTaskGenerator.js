@@ -33,47 +33,21 @@ function saudacao() {
 function check_Input(){
     let verificador = 0;
 
-    if (tarefa.value == '') {
-        verificador = -1;
-        errorValidation(tarefa);
-    } else {
-        normalValidation(tarefa);
+    function validarCampo(campo) {
+        if (campo.value == '') {
+            verificador = -1;
+            errorValidation(campo);
+        } else {
+            normalValidation(campo);
+        }
     }
 
-    if (dataInicio.value == '') {
-        verificador = -1;
-        errorValidation(dataInicio);
-    } else {
-        normalValidation(dataInicio);
-    }
-
-    if (dataFim.value == '') {
-        verificador = -1;
-        errorValidation(dataFim);
-    } else {
-        normalValidation(dataFim);
-    }
-
-    if (horaInicio.value == '') {
-        verificador = -1;
-        errorValidation(horaInicio);
-    } else {
-        normalValidation(horaInicio);
-    }
-
-    if (horaFim.value == '') {
-        verificador = -1;
-        errorValidation(horaFim);
-    } else {
-        normalValidation(horaFim);
-    }
-
-    if (descricao.value == '') {
-        verificador = -1;
-        errorValidation(descricao);
-    } else {
-        normalValidation(descricao);
-    }
+    validarCampo(tarefa);
+    validarCampo(dataInicio);
+    validarCampo(dataFim);
+    validarCampo(horaInicio);
+    validarCampo(horaFim);
+    validarCampo(descricao);
 
     return verificador;
 }
@@ -161,29 +135,36 @@ function printTask () {
 
 function timeTask (taskObject) {
     const dataAtual = new Date();
-    const dataCompleta = dataAtual.getDate().toString().padStart(2, "0") + '/' + (dataAtual.getMonth() + 1).toString().padStart(2, "0") + '/' + dataAtual.getFullYear()
-   
+    const dataCompleta = dataAtual.getDate().toString().padStart(2, "0") + '/' + (dataAtual.getMonth() + 1).toString().padStart(2, "0") + '/' + dataAtual.getFullYear();
+
     if (taskObject.status !== 0) {
-        return "Realizada"
-
-    }else if (taskObject.dataInicio > dataCompleta) {
+        return "Realizada";
+    } else if (taskObject.dataInicio > dataCompleta) {
         return "Pendente";
+    } else if (taskObject.dataInicio === dataCompleta) {
+    const horaInicio = parseInt(taskObject.horaInicio);
+    const minutoInicio = parseInt(taskObject.minutoInicio);
+    const horaAtual = dataAtual.getHours();
+    const minutoAtual = dataAtual.getMinutes();
 
-    } else if (taskObject.dataInicio == dataCompleta) {
-        if (taskObject.horaInicio > dataAtual.getHours) {
-            return "Pendente";
-        } else {
-            return "Em andamento"
-        }
+    if (horaInicio > horaAtual || (horaInicio === horaAtual && minutoInicio > minutoAtual)) {
+        return "Pendente";
+    } else {
+        return "Em andamento";
+    }
     } else if (taskObject.dataFim < dataCompleta) {
-        return "Em atrazo";
+        return "Em atraso";
+    } else if (taskObject.dataFim === dataCompleta) {
+    const horaFim = parseInt(taskObject.horaFim);
+    const minutoFim = parseInt(taskObject.minutoFim);
+    const horaAtual = dataAtual.getHours();
+    const minutoAtual = dataAtual.getMinutes();
 
-    } else if (taskObject.dataFim == dataCompleta) {
-        if (taskObject.horaFim < dataAtual.getHours) {
-            return "Em atrazo";
-        } else {
-            return "Em andamento"
-        }
+    if (horaFim < horaAtual || (horaFim === horaAtual && minutoFim < minutoAtual)) {
+        return "Em atraso";
+    } else {
+        return "Em andamento";
+    }
     } else {
         return "Em andamento";
     }
