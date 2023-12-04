@@ -169,13 +169,21 @@ function timeTask (taskObject) {
     }else if (taskObject.dataInicio > dataCompleta) {
         return "Pendente";
 
+    } else if (taskObject.dataInicio == dataCompleta) {
+        if (taskObject.horaInicio < dataAtual.getHours) {
+            return "Pendente";
+        }
+
     } else if (taskObject.dataFim < dataCompleta) {
         return "Em atrazo";
 
+    } else if (taskObject.dataFim == dataCompleta) {
+        if (taskObject.horaFim < dataAtual.getHours) {
+            return "Em atrazo";
+        }
     } else {
         return "Em andamento";
     }
-
 }
 
 // Modal
