@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/faviconSpotify.png" type="image/x-icon">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');</style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/slogan.jpeg" type="image/x-icon">
+    
+    <title>Alterar Task</title>
+</head>
+<body>
+    <div id="main-alterar">
+        <h1>Gerenciador de Tarefas</h1>
+        <div id="container-cria-tarefa">
+            <form action="#" id="form-task-generator">
+                <div class="mb-3">
+                    <div class="form-content">
+                        <input type="text" class="form-control" id="tarefa-alterar"  placeholder="Tarefa">
+                    </div>
+                    <div id="data-hora">
+                        <div>
+                            <input type="text" class="form-control" id="dataInicio-alterar" placeholder="Data início">
+                            <input type="text" class="form-control" id="dataFim-alterar" placeholder="Data Término">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="horaInicio-alterar" placeholder="Hora início">
+                            <input type="text" class="form-control" id="horaFim-alterar" placeholder="Hora término">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" id="descricao-alterar" aria-describedby="emailHelp" placeholder="Descrição">
+                    
+                    <button type="submit" class="btn btn-primary col-m-5 col-p-12" onclick="Chenge_Task(JSON.parse(localStorage.getItem('ObjectChange')))">Alterar tarefa</button>
+                    <button class="btn excluir col-m-5 col-p-12" onclick="Remove_Task(JSON.parse(localStorage.getItem('IdChangeTask')))">Excluir tarefa</button>
+                    <button class="btn realizada col-m-5 col-p-12" onclick="AccomplishedTask(JSON.parse(localStorage.getItem('ObjectChange')))">Marcar como realizada</button>
+                    <button class="btn col-m-5 col-p-12" id="cancelar" onclick="Cancelar()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="alterar.js"></script>
+</body>
+</html>
